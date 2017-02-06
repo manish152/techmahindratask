@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>UpX Academy</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+    #tab {
+        background-color: #ffb366;
+        color: white; 
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+    }
+    #tab-title {
+        font-size: 25px;
+        letter-spacing: 4px;
+        line-height: 30PX;
+    }
+    #tab-container {
+        background-color: #dcdfe5;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        padding: 50px;
+    }
+    #tab-icon {
+        text-align: right; 
+        border-bottom: 1.5px solid #72767c;
+    }
+    #speaker-img {
+        border: 7px solid white;
+        margin: auto;
+        display: block;
+    }
+    #speaker-title {
+        text-align: center; 
+        font-size: 20px;
+    }
+    #speaker-deg {
+        text-align: center; 
+        color: #83878c; 
+        font-size: 20px;
+    }
+    .decorated {
+     overflow: hidden;
+     text-align: center;
+    }
+    .decorated > span {
+        position: relative;
+        display: inline-block;
+    }
+    .decorated > span:before, .decorated > span:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        border-bottom: 2px solid;
+        width: 591px; /* half of limiter*/
+        margin: 0 20px;
+    }
+    .decorated > span:before {
+        right: 100%;
+    }
+    .decorated > span:after {
+        left: 100%;
+    }
+    #course1-sub-title {
+        font-weight: bold;
+        text-align: center;
+        text-decoration: underline;
+    }
+    #course1-item {
+        width: 250px; 
+        line-height: 40px; 
+        background-color: #303133;
+        text-align: center; 
+        display: block;
+        margin: auto;
+    }
+    #course2-sub-title {
+        font-weight: bold;
+        text-align: center;
+        text-decoration: underline;
+    }
+    #course2-item {
+        width: 250px; 
+        line-height: 40px; 
+        background-color: #ffb366;
+        text-align: center; 
+        display: block;
+        margin: auto;
+    }
+     .calendar {
+        margin:.25em 10px 10px 0;
+        padding-top:5px;
+        float:left;
+        width:250px;
+        height :150px;
+        background:#ededef;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededef), to(#ccc)); 
+        background: -moz-linear-gradient(top,  #ededef,  #ccc); 
+        text-align:center;
+        color:#000;
+        text-shadow:#fff 0 1px 0;   
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:30px; 
+        position:relative;
+        -moz-box-shadow:0 2px 2px #888;
+        -webkit-box-shadow:0 2px 2px #888;
+        box-shadow:0 2px 2px #888;
+    }
+    .calendar:before, .calendar:after {
+        content:'';
+        float:left;
+        position:absolute;
+        top:5px;    
+        width:8px;
+        height:8px;
+        background:#111;
+        z-index:1;
+        -moz-border-radius:10px;
+        -webkit-border-radius:10px;
+        border-radius:10px;
+        -moz-box-shadow:0 1px 1px #fff;
+        -webkit-box-shadow:0 1px 1px #fff;
+        box-shadow:0 1px 1px #fff;
+    }
+    .calendar:before { 
+      left:58px
+    }   
+    .calendar:after {
+      right:58px
+    }
+    .calendar em:before, .calendar em:after {
+        content:'';
+        float:left;
+        position:absolute;
+        top:-5px;   
+        width:4px;
+        height:14px;
+        background:#dadada;
+        background:-webkit-gradient(linear, left top, left bottom, from(#ffb366), to(#aaa)); 
+        background:-moz-linear-gradient(top,  #ffb366,  #aaa); 
+        z-index:2;
+        -moz-border-radius:2px;
+        -webkit-border-radius:2px;
+        border-radius:2px;
+    }
+    .calendar em:before { left:60px }   
+    .calendar em:after { right:60px }
+    #cal-p {
+        font-size: 17px; 
+        font-weight: bold; 
+        background-color: #ffb366;
+    }
+    #rect {   
+        font-size: 25px;
+        padding-left: 10px;
+        width: 500px;
+        height:40px;
+        background-color: #ffb366;
+        -webkit-transform: perspective(300px) rotateX(-30deg);
+        -o-transform: perspective(300px) rotateX(-30deg);
+        -moz-transform: perspective(300px) rotateX(-30deg);
+        -webkit-transform-origin: 0% 50%;
+        -moz-transform-origin: 0% 50%;
+        -o-transform-origin: 0% 50%;
+        transform-origin: 0% 80%;
+    }
+    .form-control {
+        width: 220px;
+        height: 30px;
+    }
+    .fancy {
+      line-height: 0.5;
+      text-align: center;
+      border-left: 1px solid #ffb366;
+      border-right: 1px solid #ffb366;
+      border-bottom: 1px solid #ffb366;
+    }
+    .fancy span {
+      display: inline-block;
+      position: relative;  
+      color: white;
+    }
+    .fancy span:before,
+    .fancy span:after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      border-top: 1px solid #ffb366;
+      top: 0;
+      width: 50%;
+    }
+    .fancy span:before {
+      right: 97%;
+      margin-right: 15px;
+    }
+    .fancy span:after {
+      left: 100%;
+      margin-left: 15px;
+    }
+    section {
+        padding-top: 30px;
+    }
+</style>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#live" style="padding-left: 50px;">UpX Academy</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#live">HOME</a></li>
+        <li><a href="#speaker">SPEAKERS</a></li>
+        <li><a href="#sessions">SESSIONS</a></li>
+        <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#course">COURSE</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- live start -->
+<section id="live">
+    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active" style="margin-top: 50px;"><a href="https://www.youtube.com/" target="blank" id="tab"><h4 id="tab-title"><i class="fa fa-laptop fa-1x" aria-hidden="true" style="color: white;"></i>Live &amp; Interactive</h4></a></li>
+        </ul>
+        <div class="tab-content col-md-12" id="tab-container" style="background-image: url('images/background.png');background-repeat: no-repeat; background-size: 100%;">
+              <div class="col-md-7" style="color: white;">
+                  <h2>PRESENTING <br>INDAIA'S LARGEST</h2>
+                  <p id="rect"><span style="font-weight: bold;">BIG DATA ANALYTICS</span> CAREER SERIES</p>
+                  <p>19TH FEB ONWARDS</p>
+                    <form method="post" action="register.php">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="Name"><br>
+                        <input type="email" class="form-control" name="email" placeholder="Email"><br>
+                        <input type="text" class="form-control" name="mobile" placeholder="Mobile No"><br>
+                        <button type="submit" class="btn btn-warning" name="submit">REGISTER FOR FREE</button>
+                      </div>
+                    </form>
+              </div>    
+              <div class="col-md-4">
+                <br><br><br><p style="text-align: center;color: white;">LEARN FROM</p>
+                  <div class="subtitle fancy">
+                    <span>TOP PRACTITIONERS</span><br><br><br><br><br>
+                        <img src="images/HP.png" style="width: 48px; height: 48px;">
+                        <img src="images/SFDC_logo.png" style="width: 100px; height: 48px;">
+                        <img src="images/hortonworks.png" style="width: 100px; height: 48px;"><br><br><br>
+                        <img src="images/ebay.png" style="width: 80px; height: 48px;">
+                        <img src="images/Amadeus_logo.png" style="width: 180px; height: 48px;"><br><br><br>
+                        <img src="images/Amazon-logo.png" style="width: 150px; height: 48px;">
+                    <br><br><br><br>
+                  </div>
+              </div>
+        </div>
+    </div>
+</section>
+<!-- live end -->
+
+<!-- image design -->
+<table id="Table_01" width="1350" height="519" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <img src="images/2_01.gif" width="72" height="519" alt=""></td>
+        <td>
+            <img src="images/2_02.gif" width="1202" height="519" alt=""></td>
+        <td>
+            <img src="images/2_03.gif" width="76" height="519" alt=""></td>
+    </tr>
+</table>
+<!-- image design end -->
+
+<!-- speaker start -->
+<section id="speaker">
+    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active" style="margin-top: 50px;"><a href="#speaker" id="tab"><h4 id="tab-title">SPEAKERS</h4></a></li>
+        </ul>
+        <div class="tab-content col-md-12" id="tab-container">
+            <p id="tab-icon"><i class="fa fa-microphone fa-3x" aria-hidden="true" style="color: #ffb366;"></i></p><br>
+              <div class="col-md-3">
+                  <a href="https://www.linkedin.com/" target="blank"><img src="images/speaker.png" class="img-circle person" id="speaker-img"></a><br>
+                  <p id="speaker-title">Manvender Singh</p>
+                  <p id="speaker-deg">Founder, Upx Academy</p>
+              </div>
+              <div class="col-md-3">
+                  <a href="https://www.linkedin.com/" target="blank"><img src="images/speaker.png" class="img-circle person" id="speaker-img"></a><br>
+                  <p id="speaker-title">Sandeep Tompala</p>
+                  <p id="speaker-deg">Data Scientist, Twitter</p>
+              </div>
+              <div class="col-md-3">
+                  <a href="https://www.linkedin.com/" target="blank"><img src="images/speaker.png" class="img-circle person" id="speaker-img"></a><br>
+                  <p id="speaker-title">Manvender Singh</p>
+                  <p id="speaker-deg">Founder, Upx Academy</p>
+              </div>
+              <div class="col-md-3">
+                  <a href="https://www.linkedin.com/" target="blank"><img src="images/speaker.png" class="img-circle person" id="speaker-img"></a><br>
+                  <p id="speaker-title">Sandeep Tompala</p>
+                  <p id="speaker-deg">Data Scientist, Twitter</p>
+              </div>
+        </div>
+    </div>
+</section>
+<!-- speaker end -->
+
+<!-- sessions -->
+<section id="sessions">
+    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active" style="margin-top: 50px;"><a href="#speaker" id="tab"><h4 id="tab-title">SESSIONS</h4></a></li>
+        </ul>
+        <div class="tab-content col-md-12" id="tab-container">
+            <p id="tab-icon"><i class="fa fa-calendar fa-3x" aria-hidden="true" style="color: #ffb366;"></i></p><br>
+              <div class="col-md-4" style="padding-left: 50px;">
+                  <div class="calendar"><em></em>
+                    <br>
+                    <p id="cal-p">10th Dec 2016 | online</p>
+                    <p style="font-size: 17px;">How to crack Big Data &amp; Data Science roles with Analytics Vidhya</p>
+                  </div>
+              </div>
+              <div class="col-md-4" style="padding-left: 30px;">
+                  <div class="calendar"><em></em>
+                    <br>
+                    <p id="cal-p">10th Dec 2016 | online</p>
+                    <p style="font-size: 17px;">How to crack Big Data &amp; Data Science roles with Analytics Vidhya</p>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="calendar"><em></em>
+                    <br>
+                    <p id="cal-p">10th Dec 2016 | online</p>
+                    <p style="font-size: 17px;">How to crack Big Data &amp; Data Science roles with Analytics Vidhya</p>
+                  </div>
+              </div>
+              <div class="col-md-4" style="padding-left: 50px;">
+                  <div class="calendar"><em></em>
+                    <br>
+                    <p id="cal-p">10th Dec 2016 | online</p>
+                    <p style="font-size: 17px;">How to crack Big Data &amp; Data Science roles with Analytics Vidhya</p>
+                  </div>
+              </div>
+              <div class="col-md-4" style="padding-left: 30px;">
+                  <div class="calendar"><em></em>
+                    <br>
+                    <p id="cal-p">10th Dec 2016 | online</p>
+                    <p style="font-size: 17px;">How to crack Big Data &amp; Data Science roles with Analytics Vidhya</p>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="calendar"><em></em>
+                    <br>
+                    <p id="cal-p">10th Dec 2016 | online</p>
+                    <p style="font-size: 17px;">How to crack Big Data &amp; Data Science roles with Analytics Vidhya</p>
+                  </div>
+              </div>
+        </div>
+    </div>
+</section>
+<!-- sessions end -->
+
+<!-- about start -->
+<section id="about">
+    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active" style="margin-top: 50px;"><a href="#speaker" id="tab"><h4 id="tab-title">ABOUT US</h4></a></li>
+        </ul>
+        <div class="tab-content col-md-12" id="tab-container">
+            <p id="tab-icon"><i class="fa fa-users fa-3x" aria-hidden="true" style="color: #ffb366;"></i></p><br>
+            <p style="text-align: justify;">In this digital era, the right data tools have the power to transform businesses by giving them a definitive edge. Powered and promoted by Tech Mahindra, one of the foremost names in Information Technology today. UpX is a world class education venture for Big Data professionals. We recognize both the challenge and opportunity, and are committed to educating and empowering professionals through transformational courses. </p>
+        </div>
+    </div>
+</section>
+<!-- about end -->
+
+<!-- course -->
+<section id="course">
+    <div class="container">
+      <div class="col-md-12" style="margin-top: 50px;">
+            <h2 class="decorated"><span>OUR COURSES</span></h2>
+          <div class="col-md-6" style="background-color: #ffb366; color: white;">
+            <h3 id="course1-sub-title">BIG DATA</h3>
+            <h4 id="course1-item">HADOOP</h4><p></p>
+            <h4 id="course1-item">APACHE SPARK</h4><p></p>
+            <h4 id="course1-item">MONGO DB</h4><p></p>
+            <p style="text-align: center;"><a href="https://upxacademy.com/" target="blank" class="btn btn-default" style="background-color: #303133;color: white;">KNOW MORE</a></p>
+          </div>
+          <div class="col-md-6" style="background-color: #303133; color: white;">
+            <h3 id="course2-sub-title">DATA SCIENCE</h3>
+            <h4 id="course2-item">DATA ANALYTICS</h4><p></p>
+            <h4 id="course2-item">MACHINE LEARNING</h4><p></p>
+            <h4 id="course2-item">TABALEAU</h4><p></p>
+            <p style="text-align: center;"><a href="https://upxacademy.com/" target="blank" class="btn btn-default" style="background-color: #ffb366;color: white;">KNOW MORE</a></p>
+          </div>
+      </div>
+    </div>
+</section>
+<!-- course end -->
+
+<!-- footer strat -->
+<footer style="background-color: #303133; color: white;margin-top: 50px;">
+    <div class="container">
+        <div class="col-md-4">
+            <h5>www.upxacademy.com</h5>
+            <h5>Email : info@upxacademy.com</h5>
+        </div>
+        <div class="col-md-4">
+            <h4>&nbsp;</h4>
+            <h5 style="text-align: center;">&copy; 2016 UpX. All Right Reserved</h5>
+        </div>
+    </div>
+</footer>
+<!-- footer end -->
+
+</body>
+</html>
